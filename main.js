@@ -21,7 +21,6 @@ class Field {
     console.log(displayString);
   }    
 
-
 }
 
 const myField = new Field([
@@ -29,7 +28,7 @@ const myField = new Field([
   ['░', 'O', '░'],
   ['░', '^', '░'],
 ]);
-// const input = prompt('Which way? ');
+// const input = prompt('Which way? ')
 // console.log(`We are going ${input}`)
 
 console.log(myField.print());
