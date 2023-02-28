@@ -11,7 +11,7 @@ class Field {
     this._locationX = 0;
     this._locationY = 0;
     // Set the start position before the game starts
-    this._field[0][0] = '*';
+    this._field[0][0] = pathCharacter;
   }
 
   print() {
@@ -53,14 +53,37 @@ class Field {
     );
   }
 
-  isHat() {
-    return this._field[this._locationY][this._locationX] === hat;
-  }
- 
   isHole() {
     return this._field[this._locationY][this._locationX] === hole;
   } 
-  
+
+  isHat() {
+    return this._field[this._locationY][this._locationX] === hat;
+  }
+
+  runGame() {
+    let playing = true;
+    while (playing) {
+      this.print();
+      this.askQuestion();
+      if (!this.isInBounds()) {
+        console.log('Out of bounds!');
+        playing = false;
+        break;
+      } else if (this.isHole()) {
+        console.log('Sorry, you fell down a hole!');
+        playing = false;
+        break;
+      } else if (this.isHat()) {
+        console.log('You found your hat! Congratulations!')
+        playing = false;
+        break;
+      }
+      // Update the current location on the map
+      this._field[this._locationY][this._locationX] = pathCharacter;
+    }
+  }
+
   }
 
 
@@ -70,10 +93,4 @@ const myField = new Field([
   ['░', 'O', '░'],
   ['░', '^', '░'],
 ]);
-// const input = prompt('Which way? ')
-// console.log(`We are going ${input}`)
-
-console.log(myField.print());
-console.log(myField.isInBounds());
-console.log(myField.isHat());
-console.log(myField.isHole());
+myField.runGame();
