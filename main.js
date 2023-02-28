@@ -11,7 +11,7 @@ class Field {
     this._locationX = 0;
     this._locationY = 0;
     // Set the start position before the game starts
-    this._field[0][0] = pathCharacter;
+    this._field[0][0] = '*';
   }
 
   print() {
@@ -53,13 +53,20 @@ class Field {
     );
   }
 
+  isHat() {
+    return this._field[this._locationY][this._locationX] === hat;
+  }
  
+  isHole() {
+    return this._field[this._locationY][this._locationX] === hole;
+  } 
+  
   }
 
 
 
 const myField = new Field([
-  ['*', '░', 'O'],
+  ['░', '░', 'O'],
   ['░', 'O', '░'],
   ['░', '^', '░'],
 ]);
@@ -67,5 +74,6 @@ const myField = new Field([
 // console.log(`We are going ${input}`)
 
 console.log(myField.print());
-console.log(myField.askQuestion());
 console.log(myField.isInBounds());
+console.log(myField.isHat());
+console.log(myField.isHole());
