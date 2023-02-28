@@ -21,6 +21,28 @@ class Field {
     console.log(displayString);
   }    
 
+  askQuestion() {
+    const answer = prompt('Which way? ').toUpperCase();
+    switch (answer) {
+      case 'U':
+        this.locationY -= 1;
+        break;
+      case 'D':
+        this.locationY += 1;
+        break;
+      case 'L':
+        this.locationX -= 1;
+        break;
+      case 'R':
+        this.locationX += 1;
+        break;
+      default:
+        console.log('Enter U, D, L or R.');
+        this.askQuestion();
+        break;
+    }
+  }
+
 }
 
 const myField = new Field([
@@ -32,4 +54,4 @@ const myField = new Field([
 // console.log(`We are going ${input}`)
 
 console.log(myField.print());
-// console.log(myField.userInput(input))
+console.log(myField.askQuestion());
